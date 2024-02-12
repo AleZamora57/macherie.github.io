@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¿Serás mi San Valentín, Lucerito?</title>
+    <style>
+        body {
+            background-color: pink;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        #yesButton {
+            font-size: 20px;
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        #noButton {
+            font-size: 20px;
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        #imageContainer {
+            border: 3px solid red;
+            width: 300px;
+            height: 300px;
+            margin-top: 20px;
+        }
+        #image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">¿Serás mi San Valentín, Lucerito?</h1>
+    **<div id="imageContainer">
+        <img id="image" src="imagen1.jpg" alt="Una descripción de la imagen">
+    </div>**
+    <button id="yesButton">Sí</button>
+    <button id="noButton">No</button>
+    <script>
+        var noButton = document.getElementById('noButton');
+        var yesButton = document.getElementById('yesButton');
+        var image = document.getElementById('image');
+        var title = document.getElementById('title');
+        var noResponses = ['¿Estás segura?', '¿Me amas de verdad?', 'Por favor di que sí'];
+        var images = ['imagen2.jpg', 'imagen3.jpg', 'imagen4.jpg', 'imagen5.jpg'];
+        var index = 0;
+
+        noButton.addEventListener('click', function() {
+            var currentFontSize = parseInt(window.getComputedStyle(yesButton).getPropertyValue('font-size'));
+            yesButton.style.fontSize = (currentFontSize + 5) + 'px'; // Aumenta el tamaño de la fuente del botón "Sí" en 5px cada vez que se hace clic en "No"
+            noButton.textContent = noResponses[index];
+            image.src = images[index];
+            index = (index + 1) % noResponses.length;
+        });
+
+        yesButton.addEventListener('click', function() {
+            var currentFontSize = parseInt(window.getComputedStyle(noButton).getPropertyValue('font-size'));
+            if (currentFontSize > 5) {
+                noButton.style.fontSize = (currentFontSize - 5) + 'px'; // Disminuye el tamaño de la fuente del botón "No" en 5px cada vez que se hace clic en "Sí"
+            }
+            image.src = 'imagen6.jpg';
+            title.textContent = 'SABÍAS QUE QUERÍAS MI LUCERITO HERMOSA';
+        });
+    </script>
+</body>
+</html>
